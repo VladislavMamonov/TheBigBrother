@@ -1,0 +1,6 @@
+os: windows
+language: C++
+script:
+  - make
+
+compiler: g++
