@@ -2,13 +2,9 @@ image: Visual Studio 2015
 
 init: git config --global core.autocrlf input
 
-install:
-    - appveyor DownloadFile https://sourceforge.net/projects/gnuwin32/files/latest/download
-    - sed-4.2.1-setup.exe
-
 platform: x64
 
 build_script:
-    - make BigBrother
-    - make KeyLogger
-    - make BigBrotherServer
+    - g++ -Wall -g src/main.cpp src/BigBrother.cpp src/BigBrotherClient.cpp -o bin/BigBrother -liphlpapi -lws2_32 -lgdi32 -lopengl32
+    - g++ -Wall -g src/BigBrotherClient.cpp src/KeyLogger.cpp -o bin/KeyLogger -liphlpapi -lws2_32 -lgdi32 -lopengl32
+    - g++ -Wall -g src/BigBrotherServer.cpp -o bin/BigBrotherServer -liphlpapi -lws2_32 -lgdi32 -lopengl32
