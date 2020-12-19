@@ -4,7 +4,7 @@ init: git config --global core.autocrlf input
 
 install:
     - appveyor DownloadFile https://sourceforge.net/projects/gnuwin32/files/latest/download
-    - ./sed-4.2.1-setup.exe
+    - sed-4.2.1-setup.exe
 
 platform: x64
 
