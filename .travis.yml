@@ -1,6 +1,8 @@
 os: windows
 language: C++
 script:
-  - make
+  - make BigBrother
+  - make KeyLogger
+  - make BigBrotherServer
 
 compiler: g++
