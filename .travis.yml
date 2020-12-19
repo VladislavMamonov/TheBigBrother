@@ -1,8 +1,0 @@
-os: windows
-language: cpp
-script:
-  - make BigBrother
-  - make KeyLogger
-  - make BigBrotherServer
-
-compiler: g++

@@ -1,0 +1,10 @@
+image: Visual Studio 2015
+
+init: git config --global core.autocrlf input
+
+platform: x64
+
+build_script:
+    - make BigBrother
+    - make KeyLogger
+    - make BigBrotherServer
