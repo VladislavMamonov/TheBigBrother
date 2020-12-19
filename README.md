@@ -1,8 +1,8 @@
 # TheBigBrother
 Compiling:
 
-g++ -Wall -g .\BigBrotherServer.cpp -o BigBrotherServer -liphlpapi -lws2_32 -lgdi32 -lopengl32
+$ make BigBrother
 
-g++ -Wall -g BigBrotherClient.cpp KeyLogger.cpp -o KeyLogger.exe -liphlpapi -lws2_32 -lgdi32 -lopengl32
+$ make KeyLogger
 
-g++ -Wall -g main.cpp BigBrother.cpp BigBrotherClient.cpp -o BigBrother.exe -liphlpapi -lws2_32 -lgdi32 -lopengl32
+$ make BigBrotherServer
